@@ -1,0 +1,70 @@
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-lg p-4" style="width: 100%; max-width: 450px;">
+    <h2 class="text-center mb-4 fw-bold text-primary">Giriş Yap</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <div class="mb-3">
+        <label for="email" class="form-label fw-semibold">E-posta</label>
+        <input 
+          type="email" 
+          class="form-control"
+          id="email"
+          formControlName="email"
+          placeholder="E-posta adresiniz">
+        <div class="invalid-feedback"
+             *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          Geçerli bir e-posta adresi giriniz
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label fw-semibold">Şifre</label>
+        <input 
+          type="password" 
+          class="form-control"
+          id="password"
+          formControlName="password"
+          placeholder="Şifreniz">
+        <div class="invalid-feedback"
+             *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Şifre en az 6 karakter olmalıdır
+        </div>
+      </div>
+
+      <button type="submit"
+              class="btn btn-primary w-100 mb-3 fw-semibold py-2"
+              [disabled]="loginForm.invalid">
+        Giriş Yap
+      </button>
+
+    </form>
+
+    <hr>
+
+    <div class="text-center">
+      <p class="mb-0 text-muted">
+        Hesabınız yok mu? 
+        <a routerLink="/register" class="text-decoration-none fw-semibold">Kayıt Ol</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .min-vh-100 {
+    min-height: 80vh;
+  }
+
+  input.ng-invalid.ng-touched {
+    border-color: #dc3545;
+  }
+
+  input.ng-valid.ng-touched {
+    border-color: #198754;
+  }
+
+  .invalid-feedback {
+    display: block;
+  }
+</style>

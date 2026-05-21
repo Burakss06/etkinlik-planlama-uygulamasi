@@ -1,0 +1,117 @@
+<div class="mb-3">
+  <a routerLink="/events" class="btn btn-outline-secondary btn-sm fw-semibold">
+    <i class="bi bi-arrow-left me-1"></i>Geri Dön
+  </a>
+</div>
+
+<div class="card shadow-sm border-0 p-4 mx-auto" style="max-width: 650px;">
+  <h2 class="fw-bold text-primary mb-4">🆕 Yeni Etkinlik Oluştur</h2>
+
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    
+    <div class="mb-3">
+      <label for="title" class="form-label fw-semibold">Etkinlik Başlığı</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="title" 
+        formControlName="title"
+        placeholder="Başlık girin">
+      <div class="invalid-feedback" 
+           *ngIf="eventForm.get('title')?.invalid && eventForm.get('title')?.touched">
+        Başlık en az 2 karakter olmalıdır.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label fw-semibold">Açıklama</label>
+      <textarea 
+        class="form-control" 
+        id="description" 
+        formControlName="description" 
+        rows="4" 
+        placeholder="Etkinlik detayları..."></textarea>
+      <div class="invalid-feedback" 
+           *ngIf="eventForm.get('description')?.invalid && eventForm.get('description')?.touched">
+        Açıklama en az 2 karakter olmalıdır.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="eventDate" class="form-label fw-semibold">Tarih</label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="eventDate" 
+          formControlName="eventDate">
+        <div class="invalid-feedback" 
+             *ngIf="eventForm.get('eventDate')?.invalid && eventForm.get('eventDate')?.touched">
+          Tarih alanı zorunludur.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="eventTime" class="form-label fw-semibold">Saat</label>
+        <input 
+          type="time" 
+          class="form-control" 
+          id="eventTime" 
+          formControlName="eventTime">
+        <div class="invalid-feedback" 
+             *ngIf="eventForm.get('eventTime')?.invalid && eventForm.get('eventTime')?.touched">
+          Saat alanı zorunludur.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="location" class="form-label fw-semibold">Konum</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="location" 
+          formControlName="location"
+          placeholder="Etkinlik yeri">
+        <div class="invalid-feedback" 
+             *ngIf="eventForm.get('location')?.invalid && eventForm.get('location')?.touched">
+          Konum alanı zorunludur.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="category" class="form-label fw-semibold">Kategori</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="category" 
+          formControlName="category"
+          placeholder="Konser, Seminer, Toplantı vb.">
+        <div class="invalid-feedback" 
+             *ngIf="eventForm.get('category')?.invalid && eventForm.get('category')?.touched">
+          Kategori en az 2 karakter olmalıdır.
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" 
+            class="btn btn-primary w-100 fw-semibold py-2 mt-3"
+            [disabled]="eventForm.invalid">
+      Etkinliği Kaydet
+    </button>
+
+  </form>
+</div>
+
+<style>
+  input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border-color: #dc3545;
+  }
+  input.ng-valid.ng-touched, textarea.ng-valid.ng-touched {
+    border-color: #198754;
+  }
+  .invalid-feedback {
+    display: block;
+  }
+</style>

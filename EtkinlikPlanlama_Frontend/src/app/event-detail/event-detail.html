@@ -1,0 +1,95 @@
+<div class="mb-3">
+  <a routerLink="/events" class="btn btn-outline-secondary btn-sm fw-semibold">
+    <i class="bi bi-arrow-left me-1"></i>Geri Dön
+  </a>
+</div>
+
+@if (loading()) {
+  <div class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Yükleniyor...</span>
+    </div>
+  </div>
+} @else {
+  @if (eventItem()) {
+    <div class="row">
+      <div class="col-md-8 mb-4">
+        <div class="card shadow-sm border-0 p-4">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <span class="badge bg-primary px-3 py-2 mb-2 fs-6">{{ eventItem().category }}</span>
+              <h1 class="fw-bold text-dark mb-0">{{ eventItem().title }}</h1>
+            </div>
+            
+            <button 
+              (click)="toggleParticipation()" 
+              [class]="hasJoined() ? 'btn btn-danger btn-lg fw-semibold' : 'btn btn-success btn-lg fw-semibold'">
+              <i [class]="hasJoined() ? 'bi bi-person-dash me-2' : 'bi bi-person-plus me-2'"></i>
+              {{ hasJoined() ? 'Etkinlikten Ayrıl' : 'Etkinliğe Katıl' }}
+            </button>
+          </div>
+
+          <hr class="my-4">
+
+          <h5 class="fw-bold text-dark mb-3">Etkinlik Açıklaması</h5>
+          <p class="text-secondary lead" style="white-space: pre-line;">{{ eventItem().description }}</p>
+
+          <hr class="my-4">
+
+          <div class="row text-center bg-light rounded p-3 m-0">
+            <div class="col-4 border-end">
+              <div class="text-muted small mb-1"><i class="bi bi-calendar-event me-1"></i>Tarih</div>
+              <div class="fw-bold text-dark">{{ eventItem().eventDate }}</div>
+            </div>
+            <div class="col-4 border-end">
+              <div class="text-muted small mb-1"><i class="bi bi-clock me-1"></i>Saat</div>
+              <div class="fw-bold text-dark">{{ eventItem().eventTime }}</div>
+            </div>
+            <div class="col-4">
+              <div class="text-muted small mb-1"><i class="bi bi-geo-alt me-1"></i>Konum</div>
+              <div class="fw-bold text-dark">{{ eventItem().location }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-0 p-3">
+          <h4 class="fw-bold text-dark mb-3">👥 Katılımcılar ({{ participants().length }})</h4>
+          
+          @if (participants().length === 0) {
+            <div class="alert alert-light text-center border py-3 mb-0" role="alert">
+              Henüz katılan kimse yok. İlk katılan sen ol!
+            </div>
+          } @else {
+            <ul class="list-group list-group-flush">
+              @for (user of participants(); track user.id) {
+                <li class="list-group-item d-flex align-items-center py-2 px-0">
+                  <div class="avatar-circle me-2 bg-primary text-white d-flex justify-content-center align-items-center fw-bold">
+                    {{ user.name.charAt(0) }}{{ user.surname.charAt(0) }}
+                  </div>
+                  <div>
+                    <div class="fw-semibold text-dark small">{{ user.name }} {{ user.surname }}</div>
+                    <div class="text-muted extra-small">{{ user.email }}</div>
+                  </div>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      </div>
+    </div>
+  }
+}
+
+<style>
+  .avatar-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 13px;
+  }
+  .extra-small {
+    font-size: 11px;
+  }
+</style>

@@ -1,0 +1,13 @@
+# Frontend ignore
+EtkinlikPlanlama_Frontend/node_modules/
+EtkinlikPlanlama_Frontend/.angular/
+EtkinlikPlanlama_Frontend/dist/
+
+# Backend ignore
+EtkinlikPlanlama_Backend/target/
+EtkinlikPlanlama_Backend/.idea/
+EtkinlikPlanlama_Backend/*.iml
+
+# Database & Logs ignore
+~/etkinlik_planlama_db*
+*.log

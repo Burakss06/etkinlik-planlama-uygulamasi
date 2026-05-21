@@ -1,0 +1,31 @@
+package com.works.configs;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.Random;
+
+@Configuration
+public class AppBeans {
+
+    @Bean(name = "model")
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper;
+    }
+
+    @Bean
+    public Random random() {
+        return new Random();
+    }
+
+    @Bean(name = "modelConfig")
+    public ModelMapper modelMapperConfig(Random random) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setFieldMatchingEnabled(true);
+        return modelMapper;
+    }
+
+}
+
