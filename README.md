@@ -31,28 +31,58 @@ Bu proje, kullanıcıların etkinlik oluşturabildiği, diğer kullanıcıların
 ## Kurulum ve Çalıştırma Adımları
 
 ### 1. Backend Projesini Başlatma
-1. `EtkinlikPlanlama_Backend` klasörüne gidin.
-2. Aşağıdaki komut ile projeyi derleyin ve testleri çalıştırın:
+`EtkinlikPlanlama_Backend` klasörüne gidin. Projeyi derlemek, testleri çalıştırmak veya projeyi ayağa kaldırmak için sisteminizdeki kurulu Maven'ı (`mvn`) veya projenin içindeki Maven Wrapper'ı (`mvnw` / `mvnw.cmd`) kullanabilirsiniz:
+
+#### A Seçeneği (Kurulu Maven ile):
+1. Projeyi derleyin ve testleri çalıştırın:
    ```bash
    mvn clean test
    ```
-3. Uygulamayı başlatmak için:
+2. Uygulamayı başlatın:
    ```bash
    mvn spring-boot:run
    ```
-   *Uygulama varsayılan olarak **8090** portunda çalışacaktır.*
+
+#### B Seçeneği (Maven Wrapper ile - Maven kurulu değilse):
+1. Projeyi derleyin ve testleri çalıştırın:
+   - Windows için:
+     ```cmd
+     .\mvnw.cmd clean test
+     ```
+   - macOS / Linux için:
+     ```bash
+     ./mvnw clean test
+     ```
+2. Uygulamayı başlatın:
+   - Windows için:
+     ```cmd
+     .\mvnw.cmd spring-boot:run
+     ```
+   - macOS / Linux için:
+     ```bash
+     ./mvnw spring-boot:run
+     ```
+
+*Uygulama varsayılan olarak **8090** portunda çalışacaktır.*
 
 ### 2. Frontend Projesini Başlatma
-1. `EtkinlikPlanlama_Frontend` klasörüne gidin.
-2. Gerekli paketleri kurmak için:
+`EtkinlikPlanlama_Frontend` klasörüne gidin. 
+
+1. Gerekli bağımlılıkları (paketleri) yüklemek için:
    ```bash
    npm install
    ```
-3. Uygulamayı yerel sunucuda çalıştırmak için:
-   ```bash
-   npm start
-   ```
-   *Uygulama tarayıcınızda otomatik olarak **http://localhost:4200** adresinde açılacaktır.*
+2. Uygulamayı yerel sunucuda çalıştırmak için aşağıdaki komutlardan birini tercih edebilirsiniz:
+   - **Seçenek 1 (Paket Yöneticisi ile):**
+     ```bash
+     npm start
+     ```
+   - **Seçenek 2 (Doğrudan Angular CLI ile - Sistemde global Angular CLI kurulu ise):**
+     ```bash
+     ng serve
+     ```
+
+*Uygulama tarayıcınızda otomatik olarak **http://localhost:4200** adresinde açılacaktır.*
 
 ---
 
