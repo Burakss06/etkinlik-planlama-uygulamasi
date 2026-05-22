@@ -95,9 +95,9 @@ Backend uygulaması çalışırken API uç noktalarını (endpoints) test etmek 
 ### H2 Veritabanı Konsolu
 Uygulama çalışırken veritabanı tablolarını ve kayıtlarını incelemek için H2 konsolunu kullanabilirsiniz:
 - **Konsol Adresi:** [http://localhost:8090/h2-console](http://localhost:8090/h2-console)
-- **JDBC URL:** `jdbc:h2:file:~/etkinlik_planlama_db`
+- **JDBC URL:** `jdbc:h2:file:~/etkinlik_planlama_db;AUTO_SERVER=TRUE`
 - **User Name:** `sa`
-- **Password:** *(Boş bırakınız)*
+- **Password:** `sa`
 
 ---
 
